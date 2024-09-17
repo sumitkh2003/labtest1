@@ -1,0 +1,37 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import io, special, sparse, linalg
+flight_schedule = np.array([[123, 'sa', 'sb', 1100, 100], [456, 'sc', 'sb', 1000, 50], [789, 'sd', 'sb', 1600, 0]])
+print(flight_schedule)
+pass_record = np.array([
+    [100, 'sumit', 123, 'a1'],
+    [200, 'khemka', 456, 'a3'],
+    [300, 'me', 123, 'a5']
+])
+print(pass_record)
+
+def find_passenger(pass_id):
+    return pass_record[pass_record[0, 0] == pass_id]
+a = find_passenger(100)
+print(a)
+def updateAvail(flight_id, newSeats):
+    index = np.where(flight_schedule[0, 0] == flight_id)
+    flight_schedule[index, 4] = newSeats
+updateAvail(123, 10)
+print(flight_schedule)
+flightid = 1
+def flight_counts():
+    unique, counts = np.unique(pass_record[:, 2], return_counts=True)
+    return dict((unique, counts))
+
+def max_reservation():
+    counts = flight_counts()
+    max_reserv = max(counts.values())
+    return max_reserv
+
+def min_reservation():
+    counts = flight_counts()
+    min_reserv  = min(counts.values())
+    min_reserv = min(counts.values())
+    return min_reserv
+    
